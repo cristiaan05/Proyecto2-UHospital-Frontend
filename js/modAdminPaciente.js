@@ -1,5 +1,5 @@
 const ruta = "https://proyecto2-uhospital.herokuapp.com/cargarPacientes";
-const rutaTabla = "https://proyecto2-uhospital.herokuapp.com//pacientes";
+const rutaTabla = "https://proyecto2-uhospital.herokuapp.com/pacientes";
 var idPaciente = 0;
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.modal');
