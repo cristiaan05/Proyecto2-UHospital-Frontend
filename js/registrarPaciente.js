@@ -1,4 +1,4 @@
-const ruta = "http://localhost:4000/registroPaciente";
+const ruta = "https://proyecto2-uhospital.herokuapp.com/registroPaciente";
 
 function registrarPaciente(event) {
     event.preventDefault();

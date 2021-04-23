@@ -1,5 +1,5 @@
-const ruta = "http://localhost:4000/cargarPacientes";
-const rutaTabla = "http://localhost:4000/pacientes";
+const ruta = "https://proyecto2-uhospital.herokuapp.com/cargarPacientes";
+const rutaTabla = "https://proyecto2-uhospital.herokuapp.com//pacientes";
 var idPaciente = 0;
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.modal');
@@ -88,7 +88,7 @@ function cargarTabla() {
 }
 
 function cargarPaciente(id) {
-    const ruta = "http://localhost:4000/paciente/" + id
+    const ruta = "https://proyecto2-uhospital.herokuapp.com/paciente/" + id
     fetch(ruta, {
             method: "GET",
             headers: {
@@ -116,7 +116,7 @@ function cargarPaciente(id) {
 }
 
 function getEditarPaciente(id) {
-    const ruta = "http://localhost:4000/paciente/" + id
+    const ruta = "https://proyecto2-uhospital.herokuapp.com/paciente/" + id
     fetch(ruta, {
             method: "GET",
             headers: {
@@ -159,7 +159,7 @@ function getEditarPaciente(id) {
 function editarPaciente() {
     // let id = document.getElementById("editarPaciente").value
 
-    const ruta = "http://localhost:4000/modificarPaciente/" + idPaciente;
+    const ruta = "https://proyecto2-uhospital.herokuapp.com/modificarPaciente/" + idPaciente;
     let nombre = document.getElementById("nombre-fielde").value;
     let apellido = document.getElementById("apellido-fielde").value;
     let fechaNacimiento = document.getElementById("fecha-fielde").value;
@@ -199,7 +199,7 @@ function eliminarPaciente(event) {
     event.preventDefault();
     // let id = document.getElementById("editarPaciente").value
     console.log("hola");
-    const ruta = "http://localhost:4000/eliminarPaciente/" + idPaciente;
+    const ruta = "https://proyecto2-uhospital.herokuapp.com/eliminarPaciente/" + idPaciente;
 
     fetch(ruta, {
             method: "DELETE",
