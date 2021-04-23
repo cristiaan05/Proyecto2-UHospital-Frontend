@@ -8,27 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css" integrity="sha512-t38vG/f94E72wz6pCsuuhcOPJlHKwPy+PY+n1+tJFzdte3hsIgYE7iEpgg/StngunGszVMrRfvwZinrza0vMTA==" crossorigin="anonymous" /> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css" integrity="sha512-t38vG/f94E72wz6pCsuuhcOPJlHKwPy+PY+n1+tJFzdte3hsIgYE7iEpgg/StngunGszVMrRfvwZinrza0vMTA==" crossorigin="anonymous" />
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js" integrity="sha512-m2PhLxj2N91eYrIGU2cmIu2d0SkaE4A14bCjVb9zykvp6WtsdriFCiXQ/8Hdj0kssUB/Nz0dMBcoLsJkSCto0Q==" crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js" integrity="sha512-m2PhLxj2N91eYrIGU2cmIu2d0SkaE4A14bCjVb9zykvp6WtsdriFCiXQ/8Hdj0kssUB/Nz0dMBcoLsJkSCto0Q==" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.css" rel="stylesheet" type="text/css" />
 
-
-    <!-- <link rel="stylesheet" type="text/css" media="screen" href="./css/registrarPaciente.css" /> -->
-    <!-- <nav class="purple">
-        <div class="nav-wrapper">
-            <a href="./principal.html" class="brand-logo">
-                <img src="./img/Logo.png" height="65" alt="">
-            </a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="./login.html">Inicar Sesión</a></li>
-            </ul>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="./registrarPaciente.html">Registrar</a></li>
-            </ul>
-        </div>
-    </nav> -->
     <nav class="nav-extended purple">
         <div class="nav-wrapper">
             <a href="./principal.html" class="brand-logo">
@@ -44,23 +31,171 @@
         <div class="nav-content">
             <ul class="tabs tabs-transparent">
                 <li class="tab"><a href="./pacientesModAdmin.html">Pacientes</a></li>
-                <li class="tab"><a class="active" href="./moduloAdminDoctores.html">Doctores</a></li>
-                <li class="tab"><a href="./moduloAdminEnfermeras.html">Enfermeras</a></li>
+                <li class="tab"><a href="./moduloAdminDoctores.html">Doctores</a></li>
+                <li class="tab"><a class="active" href="./moduloAdminEnfermeras.html">Enfermeras</a></li>
                 <li class="tab"><a href="./moduloAdminMedicamentos.html">Medicamentos</a></li>
             </ul>
         </div>
     </nav>
 </head>
 
-<body>
-    <h4>hola enfermeras</h4>
+<body onload="cargarTabla()">
+    <h3 align="center">Tabla Enfermeras</h3>
+    <table class="striped highlight" id="tableEnfermeras">
+        <thead title="Enfermeras">
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Fecha Nacimiento</th>
+                <th>Sexo</th>
+                <th>Telefono</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+
+    </table>
+
+    <!---------------------MODAL PARA VER ENFERMERA---------- -->
+    <div class="container section">
+        <div id="idModal" class="modal">
+            <div class="modal-content">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input disabled value="Alvin" id="id-field" type="text" class="validate">
+                        <label class="active" for="id">Id</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input disabled value="Alvin" id="nombre-field" type="text" class="validate">
+                        <label class="active" for="nombre">Nombre</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input disabled value="Alvin" id="apellido-field" type="text" class="validate">
+                        <label class="active" for="apellido">Apellido</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input disabled value="2001-01-01" id="fecha-field" type="date" class="validate">
+                        <label class="active" for="fecha">Fecha Nacimiento</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input disabled value="Alvin" id="sexo-field" type="text" class="validate">
+                        <label class="active" for="sexo">Sexo</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input disabled value="Alvin" id="telefono-field" type="text" class="validate">
+                        <label class="active" for="telefono">Telefono</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="" class="btn modal-close">Cerrar</a>
+            </div>
 
 
+        </div>
 
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+    </div>
+
+    <!--------------------MODAL PARA EDITAR ENFERMERA------------------>
+    <div class="container section">
+        <div id="idModalEditar" class="modal">
+            <div class="modal-content">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input value="Alvin" id="id-fielde" type="text" class="validate">
+                        <label class="active" for="id">Id</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input value="Alvin" id="nombre-fielde" type="text" class="validate">
+                        <label class="active" for="nombre">Nombre</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input value="Alvin" id="apellido-fielde" type="text" class="validate">
+                        <label class="active" for="apellido">Apellido</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input value="2001-01-01" id="fecha-fielde" type="date" class="validate">
+                        <label class="active" for="fecha">Fecha Nacimiento</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input value="Alvin" id="sexo-fielde" type="text" class="validate">
+                        <label class="active" for="sexo">Sexo</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input value="Alvin" id="telefono-fielde" type="text" class="validate">
+                        <label class="active" for="telefono">Telefono</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input value="Alvin" id="username-fielde" type="text" class="validate">
+                        <label class="active" for="username">Username</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input value="Alvin" id="password-fielde" type="password" class="validate">
+                        <label class="active" for="password">Password</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" id="footer">
+                <input type="submit" id="editarPaciente" value="editar" onclick="editarEnfermera()">
+                <a href="" class="btn modal-close">Cancelar</a>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <!--------------------MODAL PARA ELIMINAR ENFERMERA------------------>
+    <div class="container section">
+        <div id="idModalEliminar" class="modal">
+            <div class="modal-content">
+                <h5>Eliminar Enfermera</h5>
+                <p>Desea eliminar la enfermera?</p>
+            </div>
+            <div class="modal-footer" id="footer">
+                <a href="" type="submit" id="eliminarEnfermera" onclick="eliminarEnfermera(event)" class="btn red">Aceptar</a>
+                <!-- <input type="submit" id="editarPaciente" value="editar" onclick="eliminarPaciente()"> -->
+                <a href="" class="btn modal-close">Cancelar</a>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-------------------------------------BOTONES PARA CARAGA MASIVA-------------------->
+    <form action="#">
+        <div class="file-field input-field col s4">
+            <div class="btn">
+                <span>Seleccionar</span>
+                <input type="file" id="archivo" name="archivo">
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" id="archivo" name="archivo" type="text">
+            </div>
+        </div>
+        <button class="btn waves-effect waves-light" type="submit" onclick="cargaMasiva(event)">Cargar
+          </button>
+    </form>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
-    <!-- <script src="./js/registrarPaciente.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="./js/modAdminPaciente.js"></script>
 </body>
 
 </html>
