@@ -1,6 +1,6 @@
-const ruta = "https://proyecto2-uhospital.herokuapp.com/cargarPacientes";
-const rutaTabla = "https://proyecto2-uhospital.herokuapp.com/pacientes";
-var idPaciente = 0;
+const ruta = "https://proyecto2-uhospital.herokuapp.com/cargarDoctores";
+const rutaTabla = "https://proyecto2-uhospital.herokuapp.com/doctores";
+var idDoctor = 0;
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems);
@@ -22,7 +22,7 @@ function cargaMasiva(event) {
         .then(function(response) {
             if (response.message == "Datos cargados") {
                 alert("Datos cargados")
-                window.location.href = "./pacientesModAdmin.html";
+                window.location.href = "./moduloAdminDoctores.html";
             } else {
                 alert("Error cargando el archivo csv")
             }
@@ -31,7 +31,7 @@ function cargaMasiva(event) {
 }
 
 function cargarTabla() {
-    let tabla = document.getElementById("tablePacientes");
+    let tabla = document.getElementById("tableDoctores");
 
     fetch(rutaTabla, {
             method: "GET",
@@ -57,7 +57,7 @@ function cargarTabla() {
                     let nuevacolumna4 = nuevafila.insertCell(4)
                     nuevacolumna4.textContent = element.Sexo
                     let nuevacolumna5 = nuevafila.insertCell(5)
-                    nuevacolumna5.textContent = element.Telefono
+                    nuevacolumna5.textContent = element.Especialidad
                     let nuevacolumna6 = nuevafila.insertCell(6)
                     let id = element.Id
                     nuevacolumna6.innerHTML = `<button class="btn modal-trigger waves-effect waves-light blue" type="submit" data-target="idModal" onclick="cargarPaciente(${id})" name="action">
@@ -80,8 +80,8 @@ function cargarTabla() {
 
 }
 
-function cargarPaciente(id) {
-    const ruta = "https://proyecto2-uhospital.herokuapp.com/paciente/" + id
+function cargarDoctor(id) {
+    const ruta = "https://proyecto2-uhospital.herokuapp.com/doctor/" + id
     fetch(ruta, {
             method: "GET",
             headers: {
@@ -90,26 +90,26 @@ function cargarPaciente(id) {
         })
         .then(res => res.json())
         .then(function(response) {
-            if (response.message == "Paciente Encontrado") {
-                for (let index = 0; index < response.paciente.length; index++) {
-                    const paciente = response.paciente[index];
-                    document.getElementById("id-field").value = paciente.Id
-                    document.getElementById("nombre-field").value = paciente.Nombre
-                    document.getElementById("apellido-field").value = paciente.Apellido
-                    document.getElementById("fecha-field").value = paciente.FechaNacimiento
-                    document.getElementById("sexo-field").value = paciente.Sexo
-                    document.getElementById("telefono-field").value = paciente.Telefono
+            if (response.message == "Doctor Encontrado") {
+                for (let index = 0; index < response.doctor.length; index++) {
+                    const doctor = response.doctor[index];
+                    document.getElementById("id-field").value = doctor.Id
+                    document.getElementById("nombre-field").value = doctor.Nombre
+                    document.getElementById("apellido-field").value = doctor.Apellido
+                    document.getElementById("fecha-field").value = doctor.FechaNacimiento
+                    document.getElementById("sexo-field").value = doctor.Sexo
+                    document.getElementById("especialidad-field").value = doctor.Telefono
                 }
             } else {
-                alert("Error encontrado el paciente")
+                alert("Error encontrado el doctor")
             }
         })
         .catch(error => console.log("error"))
 
 }
 
-function getEditarPaciente(id) {
-    const ruta = "https://proyecto2-uhospital.herokuapp.com/paciente/" + id
+function getEditarDoctor(id) {
+    const ruta = "https://proyecto2-uhospital.herokuapp.com/doctor/" + id
     fetch(ruta, {
             method: "GET",
             headers: {
@@ -118,18 +118,19 @@ function getEditarPaciente(id) {
         })
         .then(res => res.json())
         .then(function(response) {
-            if (response.message == "Paciente Encontrado") {
-                for (let index = 0; index < response.paciente.length; index++) {
-                    const paciente = response.paciente[index];
-                    document.getElementById("id-fielde").value = paciente.Id;
-                    document.getElementById("nombre-fielde").value = paciente.Nombre;
-                    document.getElementById("apellido-fielde").value = paciente.Apellido;
-                    document.getElementById("fecha-fielde").value = paciente.FechaNacimiento;
-                    document.getElementById("sexo-fielde").value = paciente.Sexo;
-                    document.getElementById("telefono-fielde").value = paciente.Telefono
-                    document.getElementById("username-fielde").value = paciente.Username;
-                    document.getElementById("password-fielde").value = paciente.Password;
-                    idPaciente = id;
+            if (response.message == "Doctor Encontrado") {
+                for (let index = 0; index < response.doctor.length; index++) {
+                    const doctor = response.doctor[index];
+                    document.getElementById("id-fielde").value = doctor.Id;
+                    document.getElementById("nombre-fielde").value = doctor.Nombre;
+                    document.getElementById("apellido-fielde").value = doctor.Apellido;
+                    document.getElementById("fecha-fielde").value = doctor.FechaNacimiento;
+                    document.getElementById("sexo-fielde").value = doctor.Sexo;
+                    document.getElementById("especialidad-fielde").value = doctor.Especialidad
+                    document.getElementById("telefono-fielde").value = doctor.Telefono
+                    document.getElementById("username-fielde").value = doctor.Username;
+                    document.getElementById("password-fielde").value = doctor.Password;
+                    idDoctor = id;
                 }
             } else {
                 alert("Error encontrado el paciente")
@@ -138,9 +139,9 @@ function getEditarPaciente(id) {
         .catch(error => console.log("error"))
 }
 
-function editarPaciente() {
+function editarDoctor() {
 
-    const ruta = "https://proyecto2-uhospital.herokuapp.com/modificarPaciente/" + idPaciente;
+    const ruta = "https://proyecto2-uhospital.herokuapp.com/modificarDoctor/" + idDoctor;
     let nombre = document.getElementById("nombre-fielde").value;
     let apellido = document.getElementById("apellido-fielde").value;
     let fechaNacimiento = document.getElementById("fecha-fielde").value;
@@ -148,46 +149,47 @@ function editarPaciente() {
     let username = document.getElementById("username-fielde").value;
     let password = document.getElementById("password-fielde").value;
     let telefono = document.getElementById("telefono-fielde").value;
-    let paciente = {
+    let especialidad = document.getElementById("especialidad-fielde").value;
+    let doctor = {
         nombre: nombre,
         apellido: apellido,
         fechaNacimiento: fechaNacimiento,
         sexo: sexo,
         username: username,
         password: password,
+        especialidad: especialidad,
         telefono: telefono,
     };
-    console.log(paciente)
+    console.log(doctor)
 
     fetch(ruta, {
             method: "PUT",
-            body: JSON.stringify(paciente),
+            body: JSON.stringify(doctor),
             headers: {
                 "Content-Type": "application/json",
             },
         })
         .then(res => res.json())
         .then(function(response) {
-            if (response.message == "Paciente modificado") {
-                alert('Paciente modificado exitosamente')
-                window.location.href = "pacientesModAdmin.html"
+            if (response.message == "Doctor modificado") {
+                alert('Doctor modificado exitosamente')
+                window.location.href = "moduloAdminDoctores.html"
             }
         })
         .catch(error => console.log("error"))
 }
 
-function eliminarPaciente(event) {
+function eliminarDoctor(event) {
     event.preventDefault();
-    console.log("hola");
-    const ruta = "https://proyecto2-uhospital.herokuapp.com/eliminarPaciente/" + idPaciente;
+    const ruta = "https://proyecto2-uhospital.herokuapp.com/eliminarDoctor/" + idDoctor;
 
     fetch(ruta, {
             method: "DELETE",
         })
         .then(res => res.json())
         .then(function(response) {
-            if (response.message == "Paciente eliminado") {
-                window.location.href = "pacientesModAdmin.html"
+            if (response.message == "Doctor eliminado") {
+                window.location.href = "moduloAdminDoctores.html"
             }
         })
         .catch(error => console.log("error"))
