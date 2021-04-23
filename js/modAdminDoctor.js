@@ -41,7 +41,7 @@ function cargarTabla() {
         })
         .then(res => res.json())
         .then(function(response) {
-            if (response.message == "Pacientes") {
+            if (response.message == "Doctores") {
                 console.log(response.doctores)
                 for (let index = 0; index < response.doctores.length; index++) {
                     const element = response.doctores[index];
