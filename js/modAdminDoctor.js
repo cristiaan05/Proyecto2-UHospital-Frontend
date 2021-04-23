@@ -42,9 +42,9 @@ function cargarTabla() {
         .then(res => res.json())
         .then(function(response) {
             if (response.message == "Pacientes") {
-                console.log(response.pacientes)
-                for (let index = 0; index < response.pacientes.length; index++) {
-                    const element = response.pacientes[index];
+                console.log(response.doctores)
+                for (let index = 0; index < response.doctores.length; index++) {
+                    const element = response.doctores[index];
                     let nuevafila = tabla.insertRow(-1)
                     let nuevacolumna = nuevafila.insertCell(0)
                     nuevacolumna.textContent = element.Id
