@@ -60,15 +60,15 @@ function cargarTabla() {
                     nuevacolumna5.textContent = element.Especialidad
                     let nuevacolumna6 = nuevafila.insertCell(6)
                     let id = element.Id
-                    nuevacolumna6.innerHTML = `<button class="btn modal-trigger waves-effect waves-light blue" type="submit" data-target="idModal" onclick="cargarPaciente(${id})" name="action">
+                    nuevacolumna6.innerHTML = `<button class="btn modal-trigger waves-effect waves-light blue" type="submit" data-target="idModal" onclick="cargarDoctor(${id})" name="action">
                     <i class="material-icons right">remove_red_eye</i>
                   </button>`
                     let nuevacolumna7 = nuevafila.insertCell(7)
-                    nuevacolumna7.innerHTML = `<button class="btn modal-trigger green" type="submit" data-target="idModalEditar" onclick="getEditarPaciente(${id})" name="action">
+                    nuevacolumna7.innerHTML = `<button class="btn modal-trigger green" type="submit" data-target="idModalEditar" onclick="getEditarDoctor(${id})" name="action">
                     <i class="material-icons right">edit</i>
                   </button>`
                     let nuevacolumna8 = nuevafila.insertCell(8)
-                    nuevacolumna8.innerHTML = `<button class="btn modal-trigger red" type="submit" data-target="idModalEliminar" onclick="getEditarPaciente(${id})" name="action">
+                    nuevacolumna8.innerHTML = `<button class="btn modal-trigger red" type="submit" data-target="idModalEliminar" onclick="getEditarDoctor(${id})" name="action">
                     <i class="material-icons right">delete</i>
                   </button>`
                 }
