@@ -119,8 +119,8 @@ function getEditarMedicamento(id) {
                     document.getElementById("id-fielde").value = medicamento.Id;
                     document.getElementById("nombre-fielde").value = medicamento.Nombre;
                     document.getElementById("precio-fielde").value = medicamento.Precio;
-                    document.getElementById("descripcion-fielde").value = medicamento.descripcion;
-                    document.getElementById("cantidad-fielde").value = medicamento.cantidad;
+                    document.getElementById("descripcion-fielde").value = medicamento.Descripcion;
+                    document.getElementById("cantidad-fielde").value = medicamento.Cantidad;
                     idMedicamento = id;
                 }
             } else {
