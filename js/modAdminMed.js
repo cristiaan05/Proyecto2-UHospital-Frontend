@@ -164,7 +164,7 @@ function editarMedicamento() {
 function eliminarMedicamento(event) {
     event.preventDefault();
     console.log("hola");
-    const ruta = "https://proyecto2-uhospital.herokuapp.com/eliminarMedicamento/" + idPaciente;
+    const ruta = "https://proyecto2-uhospital.herokuapp.com/eliminarMedicamento/" + idMedicamento;
 
     fetch(ruta, {
             method: "DELETE",
