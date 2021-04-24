@@ -161,18 +161,18 @@ function editarMedicamento() {
         .catch(error => console.log("error"))
 }
 
-function eliminarPaciente(event) {
+function eliminarMedicamento(event) {
     event.preventDefault();
     console.log("hola");
-    const ruta = "https://proyecto2-uhospital.herokuapp.com/eliminarPaciente/" + idPaciente;
+    const ruta = "https://proyecto2-uhospital.herokuapp.com/eliminarMedicamento/" + idPaciente;
 
     fetch(ruta, {
             method: "DELETE",
         })
         .then(res => res.json())
         .then(function(response) {
-            if (response.message == "Paciente eliminado") {
-                window.location.href = "pacientesModAdmin.html"
+            if (response.message == "Medicamento Eliminado") {
+                window.location.href = "moduloAdminMedicamentos.html"
             }
         })
         .catch(error => console.log("error"))
