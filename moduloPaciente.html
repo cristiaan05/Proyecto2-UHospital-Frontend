@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Modulo Administrador</title>
+    <title>Modulo Paciente</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -38,15 +38,13 @@
                 <li><a href="./login.html">Cerrar Sesión</a></li>
             </ul>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="./registrarPaciente.html">Registrar</a></li>
+                <li><a href="./registrarPaciente.html">Editar Perfil</a></li>
             </ul>
         </div>
         <div class="nav-content">
             <ul class="tabs tabs-transparent">
-                <li class="tab"><a href="./pacientesModAdmin.html">Pacientes</a></li>
-                <li class="tab"><a class="active" href="./moduloAdminDoctores.html">Doctores</a></li>
-                <li class="tab"><a href="./moduloAdminEnfermeras.html">Enfermeras</a></li>
-                <li class="tab"><a href="./moduloAdminMedicamentos.html">Medicamentos</a></li>
+                <li class="tab"><a class="active" href="./citaPaciente.html">Cita</a></li>
+                <li class="tab"><a href="./pedidoPaciente.html">Comprar Medicina</a></li>
             </ul>
         </div>
     </nav>
@@ -57,11 +55,6 @@
     <div id="test2" class="col s12">Test 2</div>
     <div id="test3" class="col s12">Test 3</div>
     <div id="test4" class="col s12">Test 4</div>
-    <script>
-        function cargar() {
-            window.location.href = "./pacientesModAdmin.html"
-        }
-    </script>
 
 
 
@@ -70,6 +63,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
     <!-- <script src="./js/registrarPaciente.js"></script> -->
+    <script>
+        function cargar() {
+            window.location.href = "./citaPaciente.html"
+        }
+    </script>
 </body>
 
 </html>

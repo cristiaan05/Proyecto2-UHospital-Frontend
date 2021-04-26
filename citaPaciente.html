@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Modulo Paciente</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css" integrity="sha512-t38vG/f94E72wz6pCsuuhcOPJlHKwPy+PY+n1+tJFzdte3hsIgYE7iEpgg/StngunGszVMrRfvwZinrza0vMTA==" crossorigin="anonymous" />
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js" integrity="sha512-m2PhLxj2N91eYrIGU2cmIu2d0SkaE4A14bCjVb9zykvp6WtsdriFCiXQ/8Hdj0kssUB/Nz0dMBcoLsJkSCto0Q==" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.css" rel="stylesheet" type="text/css" />
+
+    <nav class="nav-extended purple">
+        <div class="nav-wrapper">
+            <a href="./principal.html" class="brand-logo">
+                <img src="./img/Logo.png" height="65" alt="">
+            </a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="./login.html">Cerrar Sesión</a></li>
+            </ul>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="./registrarPaciente.html">Editar Perfil</a></li>
+            </ul>
+        </div>
+        <div class="nav-content">
+            <ul class="tabs tabs-transparent">
+                <li class="tab"><a class="active" href="./citaPaciente.html">Cita</a></li>
+                <li class="tab"><a href="./pedidoPaciente.html">Comprar Medicina</a></li>
+            </ul>
+        </div>
+    </nav>
+</head>
+
+<body onload="cargarTabla()">
+    <h3 align="center">Tabla Citas</h3>
+    <table class="striped highlight" id="tableCitas">
+        <thead title="Citas del Paciente">
+            <tr>
+                <th>Id</th>
+                <th>Id Paciente</th>
+                <th>Estado</th>
+                <th>Doctor</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+
+    </table>
+
+    <!--------------------MODAL PARA CREAR CITA DEL PACIENTE------------------>
+    <div class="container section">
+        <div id="idModalCrear" class="modal">
+            <div class="modal-content">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input disabled id="idpaciente-fielde" type="number" class="validate">
+                        <label class="active" for="nombre">Id Paciente</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="fecha-fielde" type="date" class="validate">
+                        <label class="active" for="fecha">Fecha</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input id="hora-fielde" type="time" class="validate">
+                        <label class="active" for="hora">Hora</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="motivo-fielde" type="text" class="validate">
+                        <label class="active" for="motivo">Motivo</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" id="footer">
+                <button class="btn green waves-effect waves-light" id="editarMedicamento" onclick="solicitarCita(event)" type="submit" name="action">Crear
+                  </button>
+                <!-- <input type="submit" id="editarMedicamento" value="editar" onclick="editarMedicamento()"> -->
+                <!-- <a href="" class="btn green" type="submit" id="editarMedicamento" onclick="editarMedicamento()">Editar</a> -->
+                <a href="" class="btn modal-close">Cancelar</a>
+            </div>
+
+
+        </div>
+
+    </div>
+    <!-------------------------------------BOTONES PARA CREAR CITA-------------------->
+    <form action="#">
+        <button class="btn modal-trigger green" type="submit" data-target="idModalCrear">Crear Cita
+          </button>
+    </form>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="./js/modAdminMed.js"></script>
+</body>
+
+</html>
