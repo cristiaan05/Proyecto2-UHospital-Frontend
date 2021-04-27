@@ -31,14 +31,31 @@
         <div class="nav-content">
             <ul class="tabs tabs-transparent">
                 <li class="tab"><a href="./citaPaciente.html">Cita</a></li>
-                <li class="tab"><a href="./comprarPaciente.html">Comprar Medicina</a></li>
-                <li class="tab"><a class="active" href="./pedidoPaciente.html">Pedido</a></li>
+                <li class="tab"><a class="active" href="./comprarPaciente.html">Comprar Medicina</a></li>
+                <li class="tab"><a href="./pedidoPaciente.html">Pedido</a></li>
             </ul>
         </div>
     </nav>
 </head>
 
-<body>
+<body onload="cargarMedicamentos()">
+    <div id="card">
+        <h3 align="center">Medicamentos</h3>
+        <table class="striped highlight" id="tableMedicamentos">
+            <thead title="Medicamentos">
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+
+        </table>
+    </div>
 
 
 
@@ -46,7 +63,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <!-- <script src="./js/modPaciente.js"></script> -->
+    <script src="./js/comprarPaciente.js"></script>
 </body>
 
 </html>

@@ -1,9 +1,8 @@
 let usuarioo = JSON.parse(localStorage.getItem("paciente"))
 console.log(usuarioo)
-let idPaciente = 0;
+let idPaciente = 2;
 document.getElementById("idpaciente-fielde").value = idPaciente
-const rutaTabla = "https://proyecto2-uhospital.herokuapp.com/cita" + idPaciente;
-var idMedicamento = 0;
+const rutaTabla = "https://proyecto2-uhospital.herokuapp.com/cita/" + idPaciente;
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems);
@@ -51,7 +50,7 @@ function solicitarCita(event) {
     let hora = document.getElementById("hora-fielde").value;
     let motivo = document.getElementById("motivo-fielde").value;
     let citaAgregada = {
-        idPaciente: 1,
+        idPaciente: 2,
         fecha: fecha,
         hora: hora,
         motivo: motivo,
@@ -65,8 +64,13 @@ function solicitarCita(event) {
         })
         .then(res => res.json())
         .then(function(response) {
+            console.log(response.message);
             if (response.message == "Cita creada exitosamente") {
                 alert('Cita creada exitosamente')
+            }
+            if (response.message == "Repetido") {
+                console.log("holaaa");
+                alert('Ya tienes una cita no puedes crear otra')
             }
         })
         .catch(error => console.log("error"))
