@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Modulo Enfermera</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css" integrity="sha512-t38vG/f94E72wz6pCsuuhcOPJlHKwPy+PY+n1+tJFzdte3hsIgYE7iEpgg/StngunGszVMrRfvwZinrza0vMTA==" crossorigin="anonymous" /> -->
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js" integrity="sha512-m2PhLxj2N91eYrIGU2cmIu2d0SkaE4A14bCjVb9zykvp6WtsdriFCiXQ/8Hdj0kssUB/Nz0dMBcoLsJkSCto0Q==" crossorigin="anonymous"></script> -->
+
+
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="./css/registrarPaciente.css" /> -->
+    <!-- <nav class="purple">
+        <div class="nav-wrapper">
+            <a href="./principal.html" class="brand-logo">
+                <img src="./img/Logo.png" height="65" alt="">
+            </a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="./login.html">Inicar Sesión</a></li>
+            </ul>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="./registrarPaciente.html">Registrar</a></li>
+            </ul>
+        </div>
+    </nav> -->
+    <nav class="nav-extended purple">
+        <div class="nav-wrapper">
+            <a href="./principal.html" class="brand-logo">
+                <img src="./img/Logo.png" height="65" alt="">
+            </a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="./login.html">Cerrar Sesión</a></li>
+            </ul>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="./registrarPaciente.html">Editar Perfil</a></li>
+            </ul>
+        </div>
+        <div class="nav-content">
+            <ul class="tabs tabs-transparent">
+                <li class="tab"><a class="active" href="./citasPendientesEnfermera.html">Citas Pendientes</a></li>
+                <li class="tab"><a href="./citasAceptadasEnfermera.html">Citas Aceptadas</a></li>
+                <li class="tab"><a class="active" href="./facturaEnfermera.html">Factura</a></li>
+            </ul>
+        </div>
+    </nav>
+</head>
+
+<body onload="cargarTabla()" id="body">
+    <h3 align="center">Citas Pendientes</h3>
+    <table class="striped highlight" id="tableCitasPendientes">
+        <thead title="CitasPendientes">
+            <tr>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Motivo</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            </tr>
+            <tr>
+            </tr>
+        </tbody>
+    </table>
+
+    <!--------------------MODAL PARA SELECCIONAR DOCTOR------------------>
+    <div class="container section">
+        <div id="idModalEditar" class="modal">
+            <div class="modal-content" id="content">
+                <!-- <select name="provincia" id="select">
+                    <option>Seleccione una Provincia...</option>
+                   </select> -->
+                <br>
+                <br>
+                <br>
+                <!-- <div class="row" id="content">
+                    <div class="input-field col s6">
+                        <select id="doctores">
+                            <option value="" disabled selected>Choose your option</option>
+                        </select>
+                        <label>Materialize Select</label>
+                    </div>
+                </div> -->
+            </div>
+            <br>
+            <br>
+            <div class="modal-footer" id="footer">
+                <a type="submit" class="btn " id="editarPaciente" onclick="editarEnfermera()">Asignar Doctor</a>
+                <a href="" class="btn modal-close">Cancelar</a>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+
+
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
+    <script src="./js/citasEnfermera.js"></script>
+</body>
+
+</html>

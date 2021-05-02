@@ -67,6 +67,7 @@ function solicitarCita(event) {
             console.log(response.message);
             if (response.message == "Cita creada exitosamente") {
                 alert('Cita creada exitosamente')
+                window.location.href = "./citaPaciente.html"
             }
             if (response.message == "Repetido") {
                 console.log("holaaa");
