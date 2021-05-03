@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Modulo Administrador</title>
+    <title>Modulo Doctor</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -12,10 +12,11 @@
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js" integrity="sha512-m2PhLxj2N91eYrIGU2cmIu2d0SkaE4A14bCjVb9zykvp6WtsdriFCiXQ/8Hdj0kssUB/Nz0dMBcoLsJkSCto0Q==" crossorigin="anonymous"></script> -->
 
 
-    <link rel="stylesheet" type="text/css" media="screen" href="./css/registrarPaciente.css" />
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="./css/registrarPaciente.css" /> -->
     <!-- <nav class="purple">
         <div class="nav-wrapper">
             <a href="./principal.html" class="brand-logo">
@@ -38,30 +39,51 @@
                 <li><a href="./login.html" onclick="cerrarSesion()">Cerrar Sesión</a></li>
             </ul>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="./registrarPaciente.html">Registrar</a></li>
+                <li><a href="./registrarPaciente.html">Editar Perfil</a></li>
             </ul>
         </div>
         <div class="nav-content">
             <ul class="tabs tabs-transparent">
-                <li class="tab"><a href="./pacientesModAdmin.html">Pacientes</a></li>
-                <li class="tab"><a class="active" href="./moduloAdminDoctores.html">Doctores</a></li>
-                <li class="tab"><a href="./moduloAdminEnfermeras.html">Enfermeras</a></li>
-                <li class="tab"><a href="./moduloAdminMedicamentos.html">Medicamentos</a></li>
+                <li class="tab"><a class="active" href="./moduloDoctor.html">Receta</a></li>
+                <li class="tab"><a href="./citasDoctor.html">Citas Pendientes</a></li>
+                <li class="tab"><a href="./citasAceptadasDoctor.html">Mis Citas</a></li>
             </ul>
         </div>
     </nav>
 </head>
 
-<body onload="cargar()">
-    <div id="test1" class="col s12">Test 1</div>
-    <div id="test2" class="col s12">Test 2</div>
-    <div id="test3" class="col s12">Test 3</div>
-    <div id="test4" class="col s12">Test 4</div>
-    <script>
-        function cargar() {
-            window.location.href = "./pacientesModAdmin.html"
-        }
-    </script>
+<body>
+    <div class="container section">
+        <h4>GENERAR RECETA</h4>
+        <br>
+        <div class="row">
+            <div class="input-field col s6">
+                <input id="fecha" type="date" class="validate" required>
+                <label class="active" for="fecha">Fecha</label>
+            </div>
+            <div class="input-field col s6">
+                <input id="nombre-paciente" type="text" class="validate" required>
+                <label class="active" for="text">Nombre Paciente</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <input id="padecimiento" type="text" class="validate" required>
+                <label class="active" for="padecimiento">Padecimiento</label>
+            </div>
+            <div class="input-field col s6">
+                <!-- <input id="precio-consulta" type="number" class="validate" required>
+                <label class="active" for="precio-consulta  ">Descripcion</label> -->
+                <textarea id="descripcion" class="materialize-textarea" class="validate" required></textarea>
+                <label for="descripcion">Descripcion</label>
+            </div>
+        </div>
+        <button class="btn green" type="submit" onclick="receta()" name="action">
+            Generar
+          </button>
+
+    </div>
+
 
 
 
@@ -69,7 +91,7 @@
     <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
-    <!-- <script src="./js/registrarPaciente.js"></script> -->
+    <script src="./js/moduloDoctor.js"></script>
 </body>
 
 </html>

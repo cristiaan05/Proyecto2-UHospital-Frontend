@@ -393,3 +393,7 @@ function generarReporte() {
 
     html2pdf().from(plantillaHTML).toPdf().save("reporte_pedido.pdf");
 }
+
+function cerrarSesion() {
+    localStorage.removeItem('usuario');
+}

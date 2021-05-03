@@ -8,6 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css" integrity="sha512-t38vG/f94E72wz6pCsuuhcOPJlHKwPy+PY+n1+tJFzdte3hsIgYE7iEpgg/StngunGszVMrRfvwZinrza0vMTA==" crossorigin="anonymous" /> -->
 
     <!-- Compiled and minified JavaScript -->
@@ -36,7 +39,7 @@
                 <img src="./img/Logo.png" height="65" alt="">
             </a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="./login.html">Cerrar Sesión</a></li>
+                <li><a href="./login.html" onclick="cerrarSesion()">Cerrar Sesión</a></li>
             </ul>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="./registrarPaciente.html">Editar Perfil</a></li>
@@ -52,7 +55,7 @@
     </nav>
 </head>
 
-<body>
+<body onload="cargarDoctoresFactura()">
     <div class="container section">
         <h4>GENERAR FACTURA</h4>
         <br>
@@ -68,8 +71,10 @@
         </div>
         <div class="row">
             <div class="input-field col s6">
-                <input id="doctor" type="text" class="validate" required>
-                <label class="active" for="doctor">Doctor</label>
+                <select name="doctor" id="doctor">
+                        <option value="" disabled selected>Doctor</option>
+                    </select>
+                <label>Seleccionar Doctor</label>
             </div>
             <div class="input-field col s6">
                 <input id="precio-consulta" type="number" class="validate" required>

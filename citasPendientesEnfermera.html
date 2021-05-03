@@ -8,35 +8,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+
+
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css" integrity="sha512-t38vG/f94E72wz6pCsuuhcOPJlHKwPy+PY+n1+tJFzdte3hsIgYE7iEpgg/StngunGszVMrRfvwZinrza0vMTA==" crossorigin="anonymous" /> -->
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js" integrity="sha512-m2PhLxj2N91eYrIGU2cmIu2d0SkaE4A14bCjVb9zykvp6WtsdriFCiXQ/8Hdj0kssUB/Nz0dMBcoLsJkSCto0Q==" crossorigin="anonymous"></script> -->
 
 
-    <!-- <link rel="stylesheet" type="text/css" media="screen" href="./css/registrarPaciente.css" /> -->
-    <!-- <nav class="purple">
-        <div class="nav-wrapper">
-            <a href="./principal.html" class="brand-logo">
-                <img src="./img/Logo.png" height="65" alt="">
-            </a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="./login.html">Inicar Sesión</a></li>
-            </ul>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="./registrarPaciente.html">Registrar</a></li>
-            </ul>
-        </div>
-    </nav> -->
     <nav class="nav-extended purple">
         <div class="nav-wrapper">
             <a href="./principal.html" class="brand-logo">
                 <img src="./img/Logo.png" height="65" alt="">
             </a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="./login.html">Cerrar Sesión</a></li>
+                <li><a href="./login.html" onclick="cerrarSesion()">Cerrar Sesión</a></li>
             </ul>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="./registrarPaciente.html">Editar Perfil</a></li>
@@ -72,34 +61,28 @@
     </table>
 
     <!--------------------MODAL PARA SELECCIONAR DOCTOR------------------>
-    <div class="container section">
+    <div class="container section" onload="cargarDoctores()">
         <div id="idModalEditar" class="modal">
             <div class="modal-content" id="content">
-                <!-- <select name="provincia" id="select">
-                    <option>Seleccione una Provincia...</option>
-                   </select> -->
-                <br>
-                <br>
-                <br>
-                <!-- <div class="row" id="content">
-                    <div class="input-field col s6">
-                        <select id="doctores">
-                            <option value="" disabled selected>Choose your option</option>
+                <div class="row" id="content">
+                    <div class="input-field col s12">
+                        <select name="subcategory" id="subcategory" disabled="disabled">
+                            <option value="" disabled selected>Doctor</option>
                         </select>
                         <label>Materialize Select</label>
                     </div>
-                </div> -->
+                </div>
             </div>
+            <br>
+            <br>
+            <br>
             <br>
             <br>
             <div class="modal-footer" id="footer">
-                <a type="submit" class="btn " id="editarPaciente" onclick="editarEnfermera()">Asignar Doctor</a>
+                <a type="submit" class="btn " id="editarPaciente" onclick="editarCita()">Asignar Doctor</a>
                 <a href="" class="btn modal-close">Cancelar</a>
             </div>
-
-
         </div>
-
     </div>
 
 
@@ -107,8 +90,8 @@
 
 
     <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
+
     <script src="./js/citasEnfermera.js"></script>
 </body>
 

@@ -199,3 +199,7 @@ function eliminarDoctor(event) {
         })
         .catch(error => console.log("error"))
 }
+
+function cerrarSesion() {
+    localStorage.removeItem('usuario');
+}

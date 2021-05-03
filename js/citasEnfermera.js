@@ -8,12 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var instances = M.FormSelect.init(elems);
 });
 
-
-
-
-// doctores.addEventListener("change", cargarCategorias);
-
-let doctoress;
+var idcita = 0;
 
 function cargarDoctores() {
     const ruta = "https://proyecto2-uhospital.herokuapp.com/doctores";
@@ -27,76 +22,18 @@ function cargarDoctores() {
         .then(function(response) {
             if (response.message == "Doctores") {
                 // console.log(response.doctores)
-                doctoress = response.doctores
-                    // doctores(response.doctores)
+                $('select#subcategory').attr('disabled', false);
+                response.doctores.forEach(element => {
+                    $('select#subcategory').append('<option value="' + element.Nombre + " " + element.Apellido + '">' + element.Nombre + " " + element.Apellido + '</option>');
+                });
+                var subcatSelectElem = document.querySelectorAll('#subcategory');
+                var subcatSelectElem = M.FormSelect.init(subcatSelectElem);
             } else {
                 alert("Error cargando las enfermeras")
             }
         })
         .catch(error => console.log("error"))
-
 }
-
-function doctores() {
-    var modal = document.getElementById('content');
-    let opciones = "";
-    // doctoress.forEach((doctor) => {
-    //     let opcion = document.createElement('option')
-    //     opciones += `
-    //         <option value="${doctor.Nombre}">${doctor.Nombre}</option>`
-    //         // 
-    //         // $("#doctores").empty();
-    //         // $("#doctores").append(opciones);
-    //     var option = document.createElement("option");
-    //     option.value = "Hola";
-    //     option.text = "jeje";
-    //     selectDoctor.add(option);
-    // })
-    modal.innerHTML = `<select name="provincia" id="select">
-    <option>Seleccione una Provincia...</option>
-   </select>`
-        // var selectDoctor = document.getElementById('doctores');
-        // for (let index = 0; index < 4; index++) {
-        //     var option = document.createElement("option");
-        //     console.log("jeje");
-        //     option.value = "Hola";
-        //     option.text = "jeje";
-        //     selectDoctor.add(option);
-        // }
-
-
-}
-//Codigo a Ejecutar al Cargar la Pagina
-function myOnLoad() {
-    cargar_provincias()
-    console.log("holi");
-}
-
-// funcion para Cargar Provincias al campo <select>
-function cargar_provincias() {
-    var array = ["Cantabria", "Asturias", "Galicia", "Andalucia", "Extremadura"];
-
-    // Ordena el Array Alfabeticamente, es muy facil ;)):
-    array.sort();
-    console.log(array);
-
-    addOptions();
-}
-
-// Rutina para agregar opciones a un <select>
-function addOptions() {
-    var array = ["Cantabria", "Asturias", "Galicia", "Andalucia", "Extremadura"];
-    var select = document.getElementById("select");
-    for (value in array) {
-        var option = document.createElement("option");
-        option.text = "hola"
-        console.log(option.value);
-        // select.appendChild(option);
-    }
-
-}
-
-
 
 function cargarTabla(event) {
     let tabla = document.getElementById("tableCitasPendientes");
@@ -111,6 +48,7 @@ function cargarTabla(event) {
         .then(function(response) {
             if (response.message == "Citas") {
                 console.log(response.citas)
+
                 for (let index = 0; index < response.citas.length; index++) {
                     const element = response.citas[index];
                     let nuevafila = tabla.insertRow(-1)
@@ -122,11 +60,11 @@ function cargarTabla(event) {
                     nuevacolumna2.textContent = element.Motivo
                     let id = element.Id
                     let nuevacolumna7 = nuevafila.insertCell(3)
-                    nuevacolumna7.innerHTML = `<button class="btn modal-trigger green" type="submit" data-target="idModalEditar" onclick="doctores()"  name="action">
+                    nuevacolumna7.innerHTML = `<button class="btn modal-trigger green" type="submit" data-target="idModalEditar" onclick="todos(${element.Id})"  name="action">
                     <i class="material-icons right">check</i>
                   </button>`
                     let nuevacolumna8 = nuevafila.insertCell(4)
-                    nuevacolumna8.innerHTML = `<button class="btn modal-trigger red" type="submit" data-target="idModalEliminar" onclick="getEditarEnfermera(${id})" name="action">
+                    nuevacolumna8.innerHTML = `<button class="btn red" type="submit"  onclick="rechazarCita(${element.Id})" name="action">
                     <i class="material-icons right">close</i>
                   </button>`
                 }
@@ -392,4 +330,88 @@ function factura() {
                 </html>`;
 
     html2pdf().from(plantillaHTML).toPdf().save("factura.pdf");
+}
+
+function todos(idCita) {
+    cargarDoctores();
+    idcita = idCita;
+}
+
+function cargarDoctoresFactura() {
+    const ruta = "https://proyecto2-uhospital.herokuapp.com/doctores";
+    fetch(ruta, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+        .then(res => res.json())
+        .then(function(response) {
+            if (response.message == "Doctores") {
+                // console.log(response.doctores)
+                $('select#doctor').attr('disabled', false);
+                response.doctores.forEach(element => {
+                    $('select#doctor').append('<option value="' + element.Nombre + " " + element.Apellido + '">' + element.Nombre + " " + element.Apellido + '</option>');
+                });
+                var subcatSelectElem = document.querySelectorAll('#doctor');
+                var subcatSelectElem = M.FormSelect.init(subcatSelectElem);
+            } else {
+                alert("Error cargando las enfermeras")
+            }
+        })
+        .catch(error => console.log("error"))
+}
+
+function editarCita() {
+    const ruta = "https://proyecto2-uhospital.herokuapp.com/modificarCita/" + idcita;
+    let doc = document.getElementById("subcategory").value;
+    console.log(doc);
+    let doctor = {
+        doctor: doc,
+    };
+    fetch(ruta, {
+            method: "PUT",
+            body: JSON.stringify(doctor),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+        .then(res => res.json())
+        .then(function(response) {
+            if (response.message == "Cita modificada") {
+                alert("Doctor asignado")
+                window.location.href = "./citasPendientesEnfermera.html"
+
+            } else {
+                alert("Error cargando las enfermeras")
+            }
+        })
+        .catch(error => console.log("error"))
+
+}
+
+function rechazarCita(idCita) {
+    const ruta = "https://proyecto2-uhospital.herokuapp.com/rechazarCita/" + idCita;
+    fetch(ruta, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+        .then(res => res.json())
+        .then(function(response) {
+            if (response.message == "Cita modificada") {
+                alert("Cita rechazada")
+                window.location.href = "./citasPendientesEnfermera.html"
+
+            } else {
+                alert("Error cargando las enfermeras")
+            }
+        })
+        .catch(error => console.log("error"))
+
+}
+
+function cerrarSesion() {
+    localStorage.removeItem('usuario');
 }

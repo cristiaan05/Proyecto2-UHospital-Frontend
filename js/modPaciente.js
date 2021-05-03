@@ -1,6 +1,6 @@
 let usuarioo = JSON.parse(localStorage.getItem("paciente"))
 console.log(usuarioo)
-let idPaciente = 2;
+let idPaciente = 1;
 document.getElementById("idpaciente-fielde").value = idPaciente
 const rutaTabla = "https://proyecto2-uhospital.herokuapp.com/cita/" + idPaciente;
 document.addEventListener('DOMContentLoaded', function() {
@@ -50,7 +50,7 @@ function solicitarCita(event) {
     let hora = document.getElementById("hora-fielde").value;
     let motivo = document.getElementById("motivo-fielde").value;
     let citaAgregada = {
-        idPaciente: 2,
+        idPaciente: 1,
         fecha: fecha,
         hora: hora,
         motivo: motivo,
@@ -75,6 +75,10 @@ function solicitarCita(event) {
             }
         })
         .catch(error => console.log("error"))
+}
+
+function cerrarSesion() {
+    localStorage.removeItem('usuario');
 }
 
 // function cargarMedicamento(id) {
