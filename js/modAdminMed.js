@@ -7,27 +7,58 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function cargaMasiva(event) {
-    console.log("hola")
     event.preventDefault();
-    const fileInput = document.querySelector('#archivo');
-    console.log(fileInput)
-    const formData = new FormData();
+    let archivo = document.getElementById("archivo").files[0];
+    console.log(archivo);
 
-    formData.append('archivo', fileInput.files[0]);
+    const reader = new FileReader();
+    reader.addEventListener("load", (event) => {
+        procesar(event.target.result);
+    });
+
+    reader.readAsText(archivo, "UTF-8");
+}
+
+function procesar(texto) {
+    let medicamentos = [];
+    console.log(texto);
+
+    texto = texto.split("\n");
+
+    texto.forEach((linea) => {
+        if (linea != "") {
+            let medicamento = linea.split(",");
+            if (medicamento[0] != "nombre") {
+                let med = {
+                    nombre: medicamento[0],
+                    precio: medicamento[1],
+                    descripcion: medicamento[2],
+                    cantidad: medicamento[3],
+                };
+                medicamentos.push(med);
+            }
+        }
+    });
+    let meds = {
+        medicamentos: medicamentos,
+    };
+
     fetch(ruta, {
             method: "POST",
-            body: formData,
+            body: JSON.stringify(meds),
+            headers: {
+                "Content-Type": "application/json",
+            },
         })
-        .then(res => res.json())
-        .then(function(response) {
-            if (response.message == "Datos cargados") {
-                alert("Datos cargados")
-                window.location.href = "./moduloAdminMedicamentos.html";
-            } else {
-                alert("Error cargando el archivo csv")
+        .then((res) => res.json())
+        .then((response) => {
+            if (response.mensaje != "OK") {
+                console.error(response.mensaje);
+                alert("Error al realizar la carga masiva");
             }
-        })
-        .catch(error => console.log("error"))
+            alert("Carga masiva realizada con éxito");
+            window.location.href = "./moduloAdminMedicamentos.html"
+        });
 }
 
 function cargarTabla() {

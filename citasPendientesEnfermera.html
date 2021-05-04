@@ -28,7 +28,7 @@
                 <li><a href="./login.html" onclick="cerrarSesion()">Cerrar Sesión</a></li>
             </ul>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="./registrarPaciente.html">Editar Perfil</a></li>
+                <li><a class="modal-trigger" href="#idEditarPerfil" onclick="cargarEnfermera()">Editar Perfil</a></li>
             </ul>
         </div>
         <div class="nav-content">
@@ -59,6 +59,62 @@
             </tr>
         </tbody>
     </table>
+
+    <!--------------------MODAL PARA EDITAR PERFIL------------------>
+    <div class="container section">
+        <div id="idEditarPerfil" class="modal">
+            <div class="modal-content">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input value="Alvin" id="id-field" type="text" class="validate">
+                        <label class="active" for="id">Id</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input value="Alvin" id="nombre-field" type="text" class="validate">
+                        <label class="active" for="nombre">Nombre</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input value="Alvin" id="apellido-field" type="text" class="validate">
+                        <label class="active" for="apellido">Apellido</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input value="2001-01-01" id="fecha-field" type="date" class="validate">
+                        <label class="active" for="fecha">Fecha Nacimiento</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input value="Alvin" id="sexo-field" type="text" class="validate">
+                        <label class="active" for="sexo">Sexo</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input value="Alvin" id="telefono-field" type="text" class="validate">
+                        <label class="active" for="telefono">Telefono</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input value="Alvin" id="username-field" type="text" class="validate">
+                        <label class="active" for="username">Username</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input value="Alvin" id="password-field" type="password" class="validate">
+                        <label class="active" for="password">Password</label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" id="footer">
+                <a type="submit" id="editarPaciente" class="btn" onclick="editarEnfermera()">Editar</a>
+                <a href="" class="btn modal-close grey">Cancelar</a>
+            </div>
+
+
+        </div>
+
+    </div>
+
 
     <!--------------------MODAL PARA SELECCIONAR DOCTOR------------------>
     <div class="container section" onload="cargarDoctores()">

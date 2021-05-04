@@ -7,27 +7,62 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function cargaMasiva(event) {
-    console.log("hola")
     event.preventDefault();
-    const fileInput = document.querySelector('#archivo');
-    console.log(fileInput)
-    const formData = new FormData();
+    let archivo = document.getElementById("archivo").files[0];
+    console.log(archivo);
 
-    formData.append('archivo', fileInput.files[0]);
+    const reader = new FileReader();
+    reader.addEventListener("load", (event) => {
+        procesar(event.target.result);
+    });
+
+    reader.readAsText(archivo, "UTF-8");
+}
+
+function procesar(texto) {
+    let doctores = [];
+    console.log(texto);
+
+    texto = texto.split("\n");
+
+    texto.forEach((linea) => {
+        if (linea != "") {
+            let doctor = linea.split(",");
+            if (doctor[0] != "nombre") {
+                let doc = {
+                    nombre: doctor[0],
+                    apellido: doctor[1],
+                    fecha: doctor[2],
+                    genero: doctor[3],
+                    usuario: doctor[4],
+                    password: doctor[5],
+                    especialidad: doctor[6],
+                    telefono: doctor[7],
+                };
+                doctores.push(doc);
+            }
+        }
+    });
+    let docs = {
+        doctores: doctores,
+    };
+
     fetch(ruta, {
             method: "POST",
-            body: formData,
+            body: JSON.stringify(docs),
+            headers: {
+                "Content-Type": "application/json",
+            },
         })
-        .then(res => res.json())
-        .then(function(response) {
-            if (response.message == "Datos cargados") {
-                alert("Datos cargados")
-                window.location.href = "./moduloAdminDoctores.html";
-            } else {
-                alert("Error cargando el archivo csv")
+        .then((res) => res.json())
+        .then((response) => {
+            if (response.mensaje != "OK") {
+                console.error(response.mensaje);
+                alert("Error al realizar la carga masiva");
             }
-        })
-        .catch(error => console.log("error"))
+            alert("Carga masiva realizada con éxito");
+            window.location.href = "./moduloAdminDoctores.html"
+        });
 }
 
 function cargarTabla() {

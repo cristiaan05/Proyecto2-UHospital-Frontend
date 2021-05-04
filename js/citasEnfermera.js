@@ -1,3 +1,14 @@
+let usuarioo = JSON.parse(localStorage.getItem("usuario"))
+let username, idEnfermera
+    // let idPaciente;
+usuarioo.forEach(element => {
+    if (element.TipoUsuario == 2) {
+        username = element.Username;
+        idEnfermera = element.Id
+    }
+
+});
+
 // const ruta = "https://proyecto2-uhospital.herokuapp.com/cargarEnfermeras";
 const rutaTabla = "https://proyecto2-uhospital.herokuapp.com/moduloEnfermera/citasPendientes";
 // var idEnfermera = 0;
@@ -414,4 +425,73 @@ function rechazarCita(idCita) {
 
 function cerrarSesion() {
     localStorage.removeItem('usuario');
+}
+
+
+
+function cargarEnfermera() {
+    const ruta = "https://proyecto2-uhospital.herokuapp.com/enfermera/" + idEnfermera
+    fetch(ruta, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+        .then(res => res.json())
+        .then(function(response) {
+            if (response.message == "Enfermera Encontrada") {
+                for (let index = 0; index < response.enfermera.length; index++) {
+                    const enfermera = response.enfermera[index];
+                    document.getElementById("id-field").value = enfermera.Id
+                    document.getElementById("nombre-field").value = enfermera.Nombre
+                    document.getElementById("apellido-field").value = enfermera.Apellido
+                    document.getElementById("fecha-field").value = enfermera.FechaNacimiento
+                    document.getElementById("username-field").value = enfermera.Username
+                    document.getElementById("password-field").value = enfermera.Username
+                    document.getElementById("sexo-field").value = enfermera.Sexo
+                    document.getElementById("telefono-field").value = enfermera.Telefono
+                }
+            } else {
+                alert("Error encontrado la enfermera")
+            }
+        })
+        .catch(error => console.log("error"))
+
+}
+
+function editarEnfermera() {
+
+    const ruta = "https://proyecto2-uhospital.herokuapp.com/modificarEnfermera/" + idEnfermera;
+    let nombre = document.getElementById("nombre-field").value;
+    let apellido = document.getElementById("apellido-field").value;
+    let fechaNacimiento = document.getElementById("fecha-field").value;
+    let sexo = document.getElementById("sexo-field").value;
+    let username = document.getElementById("username-field").value;
+    let password = document.getElementById("password-field").value;
+    let telefono = document.getElementById("telefono-field").value;
+    let enfermeraa = {
+        nombre: nombre,
+        apellido: apellido,
+        fechaNacimiento: fechaNacimiento,
+        sexo: sexo,
+        username: username,
+        password: password,
+        telefono: telefono,
+    };
+
+    fetch(ruta, {
+            method: "PUT",
+            body: JSON.stringify(enfermeraa),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+        .then(res => res.json())
+        .then(function(response) {
+            if (response.message == "Enfermera modificada") {
+                alert('Perfil modificado exitosamente')
+                window.location.href = "./citasPendientesEnfermera.html"
+            }
+        })
+        .catch(error => console.log("error"))
 }

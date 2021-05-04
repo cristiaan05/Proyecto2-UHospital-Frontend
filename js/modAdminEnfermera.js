@@ -7,27 +7,61 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function cargaMasiva(event) {
-    console.log("hola")
     event.preventDefault();
-    const fileInput = document.querySelector('#archivo');
-    console.log(fileInput)
-    const formData = new FormData();
+    let archivo = document.getElementById("archivo").files[0];
+    console.log(archivo);
 
-    formData.append('archivo', fileInput.files[0]);
+    const reader = new FileReader();
+    reader.addEventListener("load", (event) => {
+        procesar(event.target.result);
+    });
+
+    reader.readAsText(archivo, "UTF-8");
+}
+
+function procesar(texto) {
+    let enfermeras = [];
+    console.log(texto);
+
+    texto = texto.split("\n");
+
+    texto.forEach((linea) => {
+        if (linea != "") {
+            let enfermera = linea.split(",");
+            if (enfermera[0] != "nombre") {
+                let enf = {
+                    nombre: enfermera[0],
+                    apellido: enfermera[1],
+                    fecha: enfermera[2],
+                    genero: enfermera[3],
+                    usuario: enfermera[4],
+                    password: enfermera[5],
+                    telefono: enfermera[6],
+                };
+                enfermeras.push(enf);
+            }
+        }
+    });
+    let enfers = {
+        enfermeras: enfermeras,
+    };
+
     fetch(ruta, {
             method: "POST",
-            body: formData,
+            body: JSON.stringify(enfers),
+            headers: {
+                "Content-Type": "application/json",
+            },
         })
-        .then(res => res.json())
-        .then(function(response) {
-            if (response.message == "Datos cargados") {
-                alert("Datos cargados")
-                window.location.href = "./moduloAdminEnfermeras.html";
-            } else {
-                alert("Error cargando el archivo csv")
+        .then((res) => res.json())
+        .then((response) => {
+            if (response.mensaje != "OK") {
+                console.error(response.mensaje);
+                alert("Error al realizar la carga masiva");
             }
-        })
-        .catch(error => console.log("error"))
+            alert("Carga masiva realizada con éxito");
+            window.location.href = "./moduloAdminEnfermeras.html"
+        });
 }
 
 function cargarTabla() {

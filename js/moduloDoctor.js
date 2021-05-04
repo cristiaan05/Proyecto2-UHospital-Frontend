@@ -1,3 +1,20 @@
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems);
+});
+
+
+let usuarioo = JSON.parse(localStorage.getItem("usuario"))
+let nombreDoctor, idDoctor
+    // let idPaciente;
+usuarioo.forEach(element => {
+    if (element.TipoUsuario == 1) {
+        nombreDoctor = element.Nombre + " " + element.Apellido;
+        idDoctor = element.Id
+    }
+
+});
+
 function receta() {
     let id = "";
     plantillaHTML = "";
@@ -242,7 +259,7 @@ function editarCita(idcita) {
 
     // console.log(doc);
     let doctor = {
-        doctor: "doctor loggeado"
+        doctor: nombreDoctor
     };
     fetch(ruta, {
             method: "PUT",
@@ -384,4 +401,76 @@ function noEditarCitaDoctor(id) {
 
 function cerrarSesion() {
     localStorage.removeItem('usuario');
+}
+
+
+function cargarDoctor() {
+    const ruta = "https://proyecto2-uhospital.herokuapp.com/doctor/" + idDoctor
+    fetch(ruta, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+        .then(res => res.json())
+        .then(function(response) {
+            if (response.message == "Doctor Encontrado") {
+                for (let index = 0; index < response.doctor.length; index++) {
+                    const paciente = response.doctor[index];
+                    document.getElementById("id-field").value = paciente.Id
+                    document.getElementById("nombre-field").value = paciente.Nombre
+                    document.getElementById("apellido-field").value = paciente.Apellido
+                    document.getElementById("fecha-field").value = paciente.FechaNacimiento
+                    document.getElementById("username-field").value = paciente.Username
+                    document.getElementById("password-field").value = paciente.Passsword
+                    document.getElementById("especialidad-field").value = paciente.Especialidad
+                    document.getElementById("sexo-field").value = paciente.Sexo
+                    document.getElementById("telefono-field").value = paciente.Telefono
+                }
+            } else {
+                alert("Error encontrado el paciente")
+            }
+        })
+        .catch(error => console.log("error"))
+
+}
+
+function editarDoctor() {
+
+    const ruta = "https://proyecto2-uhospital.herokuapp.com/modificarDoctor/" + idDoctor;
+    let nombre = document.getElementById("nombre-field").value;
+    let apellido = document.getElementById("apellido-field").value;
+    let fechaNacimiento = document.getElementById("fecha-field").value;
+    let sexo = document.getElementById("sexo-field").value;
+    let username = document.getElementById("username-field").value;
+    let password = document.getElementById("password-field").value;
+    let telefono = document.getElementById("telefono-field").value;
+    let especialidad = document.getElementById("especialidad-field").value;
+    let paciente = {
+        nombre: nombre,
+        apellido: apellido,
+        fechaNacimiento: fechaNacimiento,
+        sexo: sexo,
+        username: username,
+        password: password,
+        especialidad: especialidad,
+        telefono: telefono,
+    };
+    console.log(paciente)
+
+    fetch(ruta, {
+            method: "PUT",
+            body: JSON.stringify(paciente),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+        .then(res => res.json())
+        .then(function(response) {
+            if (response.message == "Doctor modificado") {
+                alert('Perfil modificado exitosamente')
+                window.location.href = "./moduloDoctor.html"
+            }
+        })
+        .catch(error => console.log("error"))
 }
