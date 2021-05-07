@@ -309,7 +309,7 @@ function rechazarCita(idCita) {
 function citasDoctor() {
     const nombre = "doctor";
     const apellido = "loggeado"
-    const rutaTabla = "https://proyecto2-uhospital.herokuapp.com/moduloDoctor/citas/" + nombre + " " + apellido;
+    const rutaTabla = "https://proyecto2-uhospital.herokuapp.com/moduloDoctor/citas/" + nombreDoctor;
     let tabla = document.getElementById("tableCitasDoctor");
 
     fetch(rutaTabla, {
